@@ -52,6 +52,14 @@ public class EmployeeController {
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
 	}
+	
+	@RequestMapping("/searchList")
+	public String searchList(String name,Model model) {
+		List<Employee> employeeList2 = employeeService.searchList(name);
+		model.addAttribute("employeeList", employeeList2);
+		return "employee/list";
+	}
+	
 
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を表示する

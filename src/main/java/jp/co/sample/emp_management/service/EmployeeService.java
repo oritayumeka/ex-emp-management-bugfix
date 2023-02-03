@@ -31,6 +31,17 @@ public class EmployeeService {
 		List<Employee> employeeList = employeeRepository.findAll();
 		return employeeList;
 	}
+	
+	
+	/**
+	 * あいまい検索の従業員情報を全件取得します.
+	 * 
+	 * @return 曖昧検索した従業員一覧
+	 */
+	public List<Employee> searchList(String name) {
+		List<Employee> employeeList2 = employeeRepository.findAll2(name);
+		return employeeList2;
+	}
 
 	/**
 	 * 従業員情報を取得します.

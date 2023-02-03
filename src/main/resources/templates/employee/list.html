@@ -85,25 +85,22 @@
       <!-- パンくずリスト -->
       <ol class="breadcrumb">
         <li class="active">
-          <a href="list.html" th:href="@{/employee/showList}">従業員リスト</a>
-        </li>
+          <a href="list.html" th:href="@{/employee/showList}">従業員リスト</a>  
+   		</li>
+        <!-- 自分で変更加えたところ(名前曖昧検索) -->
+	     <li class="active">
+	      <form
+    	  method="post" 
+      	  th:action="@{/employee/searchList}"
+      	  >
+	      <input type="text" name="name">      
+ 	      <button type="submit">検索</button>
+ 	      </form>
+         </li>
       </ol>
       
-      <!-- 自分で変更加えたところ(名前曖昧検索) -->
-      <div class="right box">
-      </div>
-      <form
-      method="post" 
-      action="#"
-      >
+     
       
-      <input type="text" name="likeName">
-      
-      </form>
-      
-      <button type="submit">検索</button>
-      
-      </div>
       
 	
       <!-- table -->
