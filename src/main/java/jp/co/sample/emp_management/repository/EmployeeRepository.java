@@ -77,6 +77,14 @@ public class EmployeeRepository {
 	/**
 	 * 従業員情報を変更します.
 	 */
+	
+	public void update1(Employee employee) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
+
+		String updateSql = "UPDATE employees SET name=;name";
+		template.update(updateSql, param);
+	}
+	
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 

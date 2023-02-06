@@ -111,7 +111,18 @@
                   <tr>
                     <th nowrap>従業員名</th>
                     <td>
-                      <span th:utext="${employee.name}">山田花子</span>
+                    <form
+                     th:action="@{/update}"
+                     th:object="${updateEmployeeForm}"
+                     method="post">
+                      <label th:errors="*{name}" 
+                      class="error-messages">名前の形式が不正です</label>
+                      <input 
+                      type="text" 
+                      th:field="*{name}" 
+                      class="form-control" 
+                      th:errorclass="error-input">
+                      </form>
                     </td>
                   </tr>
                   <tr>
@@ -126,57 +137,93 @@
                   <tr>
                     <th nowrap>性別</th>
                     <td>
-                      <span th:utext="${employee.gender}">女性</span>
+                      <label 
+                      th:errors="*{gender}" 
+                      class="error-messages">性別を選択してください</label>
+                      <select 
+                      th:field="*{gender}" 
+                      class="form-control" 
+                      th:errorclass="error-input">
+                      	<option value="男性">男性</option>
+                      	<option value="女性">女性</option>
+                      </select>
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>入社日</th>
                     <td>
-                      <span th:utext="${employee.hireDate}">2012/11/29</span>
-                    </td>
+                     <label th:errors="*{hireDate}"
+                      class="error-messages">入社日の形式が不正です</label>
+                      <input 
+                      type="date" 
+                      th:field="*{hireDate}" 
+                      class="form-control" 
+                      th:errorclass="error-input">                 
+                      </td>
                   </tr>
                   <tr>
                     <th nowrap>メールアドレス</th>
                     <td>
-                      <span th:utext="${employee.mailAddress}"
-                        >yamada@sample.com</span
-                      >
+                      <label th:errors="*{mailAddress}" 
+                      class="error-messages">メールアドレスの形式が不正です</label>
+                      <input type="text" 
+                      th:field="*{mailAddress}" 
+                      class="form-control" 
+                      th:errorclass="error-input">
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>郵便番号</th>
                     <td>
-                      <span th:utext="${employee.zipCode}">111-1111</span>
+                      <label th:errors="*{zipCode}" 
+                      class="error-messages">郵便番号の形式が不正です</label>
+                      <input type="text" 
+                      th:field="*{zipCode}" 
+                      class="form-control" 
+                      th:errorclass="error-input">
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>住所</th>
                     <td>
-                      <span th:utext="${employee.address}"
-                        >東京都新宿区1-1-1</span
-                      >
+                      <label th:errors="*{address}" 
+                      class="error-messages">住所の形式が不正です</label>
+                      <input type="text" th:field="*{address}" 
+                      class="form-control" 
+                      th:errorclass="error-input">
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>電話番号</th>
                     <td>
-                      <span th:utext="${employee.telephone}"
-                        >090-0000-0000</span
-                      >
+                     <label th:errors="*{telephone}" 
+                     class="error-messages">電話番号の形式が不正です</label>
+                      <input type="text" 
+                      th:field="*{telephone}" 
+                      class="form-control" 
+                      th:errorclass="error-input">
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>給料</th>
                     <td>
-                      <span th:utext="${employee.salary + '円'}">400000円</span>
+                      <label th:errors="*{salary}" 
+                      class="error-messages">給料の形式が不正です</label>
+                      <input type="text" 
+                      th:field="*{salary}" 
+                      class="form-control" 
+                      th:errorclass="error-input">
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>特性</th>
                     <td>
-                      <span th:utext="${employee.characteristics}"
-                        >明るく素直な性格です。リーダーシップを発揮します。新卒社員研修の時はグループ開発の時にリーダーを買ってでました。積極性も人間性も抜群です。周りに対する不満も聞いたことがありません。</span
-                      >
+                      <label th:errors="*{characteristics}" 
+                      class="error-messages">特性の形式が不正です</label>
+                      <textarea th:field="*{characteristics}" 
+                      class="form-control" 
+                      th:errorclass="error-input" 
+                      rows="5"></textarea>
                     </td>
                   </tr>
                   <tr>
