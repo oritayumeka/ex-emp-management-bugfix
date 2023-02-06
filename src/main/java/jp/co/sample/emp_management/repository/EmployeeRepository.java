@@ -77,10 +77,36 @@ public class EmployeeRepository {
 	/**
 	 * 従業員情報を変更します.
 	 */
+	
+	public void update1(Employee employee) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
+
+		String updateSql = "UPDATE employees SET name=;name";
+		template.update(updateSql, param);
+	}
+	
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 
 		String updateSql = "UPDATE employees SET dependents_count=:dependentsCount WHERE id=:id";
 		template.update(updateSql, param);
 	}
+	
+	
+	/**
+	 * 従業員を検索します
+	 * @return
+	 */
+	
+	public List<Employee> findAll2(String name) {
+		String sql = "SELECT*FROM employees WHERE name LIKE :name";
+		//'%"+name+ "%'
+		//↑sql内の式だから''で囲む
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name","%"+name+"%");
+		//Javaだから""必要("%"+name+"%")
+		//↑ココでparamを使っているから↓ココはparam必要
+		List<Employee> searchList = template.query(sql,param,EMPLOYEE_ROW_MAPPER);
+		return searchList;
+	}
+	
 }

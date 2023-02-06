@@ -2,6 +2,7 @@ package jp.co.sample.emp_management.controller;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +53,14 @@ public class EmployeeController {
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
 	}
+	
+	@RequestMapping("/searchList")
+	public String searchList(String name,Model model) {
+		List<Employee> employeeList2 = employeeService.searchList(name);
+		model.addAttribute("employeeList", employeeList2);
+		return "employee/list";
+	}
+	
 
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を表示する
@@ -63,6 +72,8 @@ public class EmployeeController {
 	 * @param model モデル
 	 * @return 従業員詳細画面
 	 */
+	
+		
 	@RequestMapping("/showDetail")
 	public String showDetail(String id, Model model) {
 		Employee employee = employeeService.showDetail(Integer.parseInt(id));
@@ -73,6 +84,47 @@ public class EmployeeController {
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を更新する
 	/////////////////////////////////////////////////////
+	
+	/**
+	 * 従業員詳細(従業員名)を更新します.
+	 * 
+	 * @param form 従業員情報用フォーム
+	 * @return 従業員一覧画面へリダクレクト
+	 */
+	
+	/*@RequestMapping("/update")
+	public String update1(@Validated UpdateEmployeeForm form, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return showDetail(form.getId(), model);
+		}
+		Employee employee = new Employee();
+		employee.setName(form.getName());
+		employeeService.update(employee);
+		BeanUtils.copyProperties(form, employee);
+		return "redirect:/employee/showList";
+	}
+*/
+	
+	/**
+	 * 従業員詳細(入社日)を更新します.
+	 * 
+	 * @param form 従業員情報用フォーム
+	 * @return 従業員一覧画面へリダクレクト
+	 */
+	
+/*		@RequestMapping("/update")
+	public String update2(@Validated UpdateEmployeeForm form, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return showDetail(form.getId(), model);
+		}
+		Employee employee = new Employee();
+		BeanUtils.copyProperties(form, employee);
+		employee.setHireDate(form.getHire_date());
+		employeeService.update(employee);
+		return "redirect:/employee/showList";
+	}
+	
+*/	
 	/**
 	 * 従業員詳細(ここでは扶養人数のみ)を更新します.
 	 * 
