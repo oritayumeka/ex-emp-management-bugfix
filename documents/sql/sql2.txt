@@ -1,0 +1,11 @@
+--テーブルがあった場合は事前に削除
+DROP TABLE IF EXISTS reminders CASCADE;
+
+-- リマインダーテーブル
+create table reminders(
+  id serial primary key,
+  administrator_id integer not null,
+  random_str varchar(100) not null unique,
+  regist_date timestamp default CURRENT_TIMESTAMP,
+  del_flg integer default 0
+);

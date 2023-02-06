@@ -94,5 +94,18 @@ public class AdministratorRepository {
 		}
 		return administratorList.get(0);
 	}
+	
+	public void updatePassword(Integer id, String password) {
+		String sql = """
+				update administrators set
+				  password = :password
+				where
+				  id = :id
+				""";
+		SqlParameterSource param = new MapSqlParameterSource()
+				.addValue("password", password)
+				.addValue("id", id);
+		template.update(sql, param);
+	}
 
 }
